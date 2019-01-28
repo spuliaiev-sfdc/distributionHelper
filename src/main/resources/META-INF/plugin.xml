@@ -1,0 +1,14 @@
+<idea-plugin>
+    <id>net.bmac.intellij.pluginDownloader</id>
+    <name>Plugin Downloader</name>
+    <vendor email="brianmay27@gmail.com">brianmay27@gmail.com</vendor>
+
+    <description><![CDATA[
+    Enables distribution of plugins to install onto a managed installation.
+    ]]></description>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <ApplicationLoadListener implementation="net.bmac.intellij.ApplicationStartupHook" order="last"/>
+        <applicationService serviceImplementation="net.bmac.intellij.settings.PluginSettings"/>
+    </extensions>
+</idea-plugin>
