@@ -41,14 +41,13 @@ public class ApplicationStartupHook implements ApplicationLoadListener {
         if (!pluginNodes.isEmpty()) {
             List<IdeaPluginDescriptor> pluginDescriptors = getPlugins();
             try {
-                ApplicationManager.getApplication().executeOnPooledThread(() -> {
-                    boolean installed = PluginInstaller.prepareToInstall(pluginNodes, pluginDescriptors, new PluginManagerMain.PluginEnabler.HEADLESS(), DumbProgressIndicator.INSTANCE);
-                    if (installed) {
-                        if (Restarter.isSupported()) {
-                            ((ApplicationImpl) ApplicationManager.getApplication()).exit(true, true, true);
-                        }
+                boolean installed = ApplicationManager.getApplication().executeOnPooledThread(() ->
+                        PluginInstaller.prepareToInstall(pluginNodes, pluginDescriptors, new PluginManagerMain.PluginEnabler.HEADLESS(), DumbProgressIndicator.INSTANCE)).get();
+                if (installed) {
+                    if (Restarter.isSupported()) {
+                        ((ApplicationImpl) ApplicationManager.getApplication()).exit(true, true, true);
                     }
-                }).get();
+                }
             } catch (InterruptedException | ExecutionException e) {
                 //TODO fixme;
                 throw new RuntimeException(e);
