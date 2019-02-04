@@ -43,6 +43,7 @@ public class ApplicationStartupHook implements ApplicationLoadListener {
             try {
                 boolean installed = ApplicationManager.getApplication().executeOnPooledThread(() ->
                         PluginInstaller.prepareToInstall(pluginNodes, pluginDescriptors, new PluginManagerMain.PluginEnabler.HEADLESS(), DumbProgressIndicator.INSTANCE)).get();
+                PropertiesComponent.getInstance().setValue(INSTALLED_SETTING, true);
                 if (installed) {
                     if (Restarter.isSupported()) {
                         ((ApplicationImpl) ApplicationManager.getApplication()).exit(true, true, true);
@@ -53,7 +54,6 @@ public class ApplicationStartupHook implements ApplicationLoadListener {
                 throw new RuntimeException(e);
             }
         }
-        PropertiesComponent.getInstance().setValue(INSTALLED_SETTING, true);
     }
 
     private void addAllRepos(Plugins plugins) {

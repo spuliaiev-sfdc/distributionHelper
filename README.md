@@ -20,3 +20,11 @@ Example plugin file
 }
 
 ```
+
+## TODO
+
+Need to figure out a few issues.
+
+Plugin ID, if the plugin ID does not match the id in the plugin, this could go into a reboot loop
+
+Need to keep track of plugins installed. I want to allow new plugins to be added, but also want to allow people to uninstall them if they want (maybe?).
