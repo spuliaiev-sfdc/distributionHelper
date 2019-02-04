@@ -24,5 +24,5 @@ intellij {
 
 runIde {
     //Can use this to debug
-    //jvmArgs += '-DdistributionHelper.pluginFile=/home/brian/projects/pluginDownloader/plugins'
+    //jvmArgs += '-DdistributionHelper.pluginFile=/home/brian/projects/distributionHelper/plugins'
 }

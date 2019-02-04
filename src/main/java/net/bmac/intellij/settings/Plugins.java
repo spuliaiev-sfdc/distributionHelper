@@ -9,15 +9,15 @@ import java.util.List;
 
 public class Plugins {
 
-    private List<String> pluginIds = Lists.newArrayList();
+    private List<Plugin> plugins = Lists.newArrayList();
     private List<String> pluginRepos = Lists.newArrayList();
 
-    public List<String> getPluginIds() {
-        return pluginIds;
+    public List<Plugin> getPlugins() {
+        return plugins;
     }
 
-    public void setPluginIds(List<String> pluginIds) {
-        this.pluginIds = pluginIds;
+    public void setPlugins(List<Plugin> plugins) {
+        this.plugins = plugins;
     }
 
     public List<String> getPluginRepos() {
@@ -26,6 +26,36 @@ public class Plugins {
 
     public void setPluginRepos(List<String> pluginRepos) {
         this.pluginRepos = pluginRepos;
+    }
+
+    public static class Plugin {
+        String id;
+        String repo;
+        String path;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getRepo() {
+            return repo;
+        }
+
+        public void setRepo(String repo) {
+            this.repo = repo;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
+        }
     }
 
     public static Plugins load(File from) {

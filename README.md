@@ -10,7 +10,13 @@ Example plugin file
 ```
 {
     "pluginRepos": ["http://github.com/brian-mcnamara/pluginDownloader/pages/pluginUpdates.xml"],
-    "pluginIds": ["net.bmac.intellij.distributionHelper"]
+    "plugins": [
+        {
+            "id" : "net.bmac.intellij.distributionHelper",
+            "repo" : "http://github.com/brian-mcnamara/pluginDownloader/pages/pluginUpdates.xml",
+            "path" : "./releases/distributionHelper-1.0.zip"
+        }
+    ]
 }
 
 ```

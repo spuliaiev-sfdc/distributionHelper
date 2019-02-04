@@ -65,20 +65,22 @@ public class ApplicationStartupHook implements ApplicationLoadListener {
     }
 
     private List<PluginNode> getPluginsToInstall(Plugins plugins) {
-        List<String> pluginIds = plugins.getPluginIds();
+        List<Plugins.Plugin> pluginIds = plugins.getPlugins();
 
         if (pluginIds.isEmpty()) {
             return Collections.emptyList();
         }
         List<PluginId> installedIds = Stream.of(PluginManagerCore.getPlugins()).map(PluginDescriptor::getPluginId).collect(Collectors.toList());
         List<PluginNode> pluginNodes = Lists.newArrayListWithCapacity(pluginIds.size());
-        for (String pluginId : pluginIds) {
-            PluginId id = PluginId.getId(pluginId);
+        for (Plugins.Plugin plugin : pluginIds) {
+            PluginId id = PluginId.getId(plugin.getId());
             if (installedIds.contains(id)) {
                 continue;
             }
             PluginNode node = new PluginNode(id);
-            node.setName(pluginId);
+            node.setName(plugin.getId());
+            node.setRepositoryName(plugin.getRepo());
+            node.setDownloadUrl(plugin.getPath());
             pluginNodes.add(node);
         }
         return pluginNodes;
