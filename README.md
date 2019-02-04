@@ -1,24 +1,16 @@
 # Plugin Downloader
 
-Simple IntelliJ plugin to help distribute plugins. Allows specifying plugin repos as well as pluginIds. Combined, the plugin
-will download plugins that the shared settings specifies.
+Simple IntelliJ plugin to help distribute plugins. Allows specifying plugin repos as well as pluginIds.
+
+Specify `distributionHelper.pluginFile` in idea.properties to specify the json plugin file
 
 ## Example
 
-Example shared configuration (settings-repository)[https://github.com/JetBrains/intellij-community/blob/master/plugins/settings-repository/README.md] downloader.xml
+Example plugin file
 ```
-<application>
-  <component name="pluginDownloader">
-    <option name="pluginIds">
-      <list>
-        <option value="net.bmac.intellij.pluginDownloader" />
-      </list>
-    </option>
-    <option name="pluginRepos">
-      <list>
-        <option value="http://github.com/brian-mcnamara/pluginDownloader/pages/pluginUpdates.xml" />
-      </list>
-    </option>
-  </component>
-</application>
+{
+    "pluginRepos": ["http://github.com/brian-mcnamara/pluginDownloader/pages/pluginUpdates.xml"],
+    "pluginIds": ["net.bmac.intellij.distributionHelper"]
+}
+
 ```
