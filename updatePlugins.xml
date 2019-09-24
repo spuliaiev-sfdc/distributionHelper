@@ -1,0 +1,3 @@
+<plugins>
+    <plugin id="SalesforcePluginsDistributionHelper" url="https://spuliaiev-sfdc.github.io/distributionHelper/build/distributions/distributionHelper-1.0.zip" version="1.0"/>
+</plugins>
